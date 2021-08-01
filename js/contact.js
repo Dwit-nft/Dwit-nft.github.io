@@ -30,16 +30,21 @@ function formSubmit(e) {
   //send message values
   sendMessage(name, email,message);
 
-  //Show Alert Message(5)
-  document.querySelector('.alert').style.display = 'block';
+  if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)))
+  {
+    alert("You have entered an invalid email address!");
+    return (false);
+  }
+  else
+  {
+    //send message values
+    sendMessage(name, email,message);
 
-  //Hide Alert Message After Seven Seconds(6)
-  setTimeout(function() {
-    document.querySelector('.alert').style.display = 'none';
-  }, 2000);
-
-  //Form Reset After Submission(7)
-  document.getElementById('contactForm').reset();
+    //Show Alert Message(5)
+    alert("Thanks "+ name +". Your query has been submitted");
+    
+  }
+    document.getElementById("contactForm").reset();
 }
 
 //Send Message to Firebase(4)
